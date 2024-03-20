@@ -16,8 +16,8 @@ public class PlatformController : MonoBehaviour
     }
     private enum Item
     {
-        X,
-        O
+        Cat,
+        Dog
     }
     public GameObject canvasPauseMenu;
     public float force = 5;
@@ -197,7 +197,7 @@ public class PlatformController : MonoBehaviour
     {
         _gameobject.transform.GetComponent<Animator>().SetTrigger("StartScale");
 
-        if (item == Item.O)
+        if (item == Item.Dog)
             _gameobject.transform.GetComponent<SquareController>().selected_O = true;
         else
             _gameobject.transform.GetComponent<SquareController>().selected_X = true;
@@ -207,8 +207,8 @@ public class PlatformController : MonoBehaviour
 
     private void PlaySFX(GameObject _gameobject, Item item)
     {
-        AudioSource audioSource = _gameobject.transform.GetChild(item == Item.O ? 0 : 1).GetComponent<AudioSource>();
-        _gameobject.transform.GetChild(item == Item.O ? 0 : 1).GetComponent<Animator>().SetTrigger("StartPopup");
+        AudioSource audioSource = _gameobject.transform.GetChild(item == Item.Dog ? 0 : 1).GetComponent<AudioSource>();
+        _gameobject.transform.GetChild(item == Item.Dog ? 0 : 1).GetComponent<Animator>().SetTrigger("StartPopup");
         try
         {
             if (MusicClass.Instance?.sliderVolume?.value != null)
@@ -250,7 +250,7 @@ public class PlatformController : MonoBehaviour
 
                         if (firstPlayer)
                         {
-                            SelectItem(hit.transform.gameObject, Item.X);
+                            SelectItem(hit.transform.gameObject, Item.Cat);
                             firstPlayer = false;
                             if (GameModeSelected == GameModes.CPU)
                             {
@@ -259,7 +259,7 @@ public class PlatformController : MonoBehaviour
                         }
                         else
                         {
-                            SelectItem(hit.transform.gameObject, Item.O);
+                            SelectItem(hit.transform.gameObject, Item.Dog);
                             firstPlayer = true;
                         }
                     }
@@ -279,183 +279,183 @@ public class PlatformController : MonoBehaviour
     {
         //attack lines
         if ((A2.selected_O && A3.selected_O && !A1.selected_X && !A1.selected_O))
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if ((A1.selected_O && A3.selected_O && !A2.selected_X && !A2.selected_O))
-            SelectItem(A2_gameobject, Item.O);
+            SelectItem(A2_gameobject, Item.Dog);
         else if ((A1.selected_O && A2.selected_O && !A3.selected_X && !A3.selected_O))
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
 
         else if ((B2.selected_O && B3.selected_O && !B1.selected_X && !B1.selected_O))
-            SelectItem(B1_gameobject, Item.O);
+            SelectItem(B1_gameobject, Item.Dog);
         else if ((B1.selected_O && B3.selected_O && !B2.selected_X && !B2.selected_O))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
         else if ((B1.selected_O && B2.selected_O && !B3.selected_X && !B3.selected_O))
-            SelectItem(B3_gameobject, Item.O);
+            SelectItem(B3_gameobject, Item.Dog);
 
         else if ((C2.selected_O && C3.selected_O && !C1.selected_X && !C1.selected_O))
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
         else if ((C1.selected_O && C3.selected_O && !C2.selected_X && !C2.selected_O))
-            SelectItem(C2_gameobject, Item.O);
+            SelectItem(C2_gameobject, Item.Dog);
         else if ((C1.selected_O && C2.selected_O && !C3.selected_X && !C3.selected_O))
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         //attack columns
         else if ((B1.selected_O && C1.selected_O && !A1.selected_X && !A1.selected_O))
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if ((A1.selected_O && C1.selected_O && !B1.selected_X && !B1.selected_O))
-            SelectItem(B1_gameobject, Item.O);
+            SelectItem(B1_gameobject, Item.Dog);
         else if ((A1.selected_O && B1.selected_O && !C1.selected_X && !C1.selected_O))
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
 
         else if ((B2.selected_O && C2.selected_O && !A2.selected_X && !A2.selected_O))
-            SelectItem(A2_gameobject, Item.O);
+            SelectItem(A2_gameobject, Item.Dog);
         else if ((A2.selected_O && C2.selected_O && !B2.selected_X && !B2.selected_O))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
         else if ((A2.selected_O && B2.selected_O && !C2.selected_X && !C2.selected_O))
-            SelectItem(C2_gameobject, Item.O);
+            SelectItem(C2_gameobject, Item.Dog);
 
         else if ((B3.selected_O && C3.selected_O && !A3.selected_X && !A3.selected_O))
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
         else if ((A3.selected_O && C3.selected_O && !B3.selected_X && !B3.selected_O))
-            SelectItem(B3_gameobject, Item.O);
+            SelectItem(B3_gameobject, Item.Dog);
         else if ((A3.selected_O && B3.selected_O && !C3.selected_X && !C3.selected_O))
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         //atack diagonal
         else if ((B2.selected_O && C3.selected_O && !A1.selected_X && !A1.selected_O))
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if ((A1.selected_O && C3.selected_O && !B2.selected_X && !B2.selected_O))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
         else if ((A1.selected_O && B2.selected_O && !C3.selected_X && !C3.selected_O))
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         else if ((B2.selected_O && C1.selected_O && !A3.selected_X && !A3.selected_O))
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
         else if ((A3.selected_O && C1.selected_O && !B2.selected_X && !B2.selected_O))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
         else if ((A3.selected_O && B2.selected_O && !C1.selected_X && !C1.selected_O))
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
 
         //defense lines
         else if ((A2.selected_X && A3.selected_X && !A1.selected_O && !A1.selected_X))
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if ((A1.selected_X && A3.selected_X && !A2.selected_O && !A2.selected_X))
-            SelectItem(A2_gameobject, Item.O);
+            SelectItem(A2_gameobject, Item.Dog);
         else if ((A1.selected_X && A2.selected_X && !A3.selected_O && !A3.selected_X))
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
 
         else if ((B2.selected_X && B3.selected_X && !B1.selected_O && !B1.selected_X))
-            SelectItem(B1_gameobject, Item.O);
+            SelectItem(B1_gameobject, Item.Dog);
         else if ((B1.selected_X && B3.selected_X && !B2.selected_O && !B2.selected_X))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
         else if ((B1.selected_X && B2.selected_X && !B3.selected_O && !B3.selected_X))
-            SelectItem(B3_gameobject, Item.O);
+            SelectItem(B3_gameobject, Item.Dog);
 
         else if ((C2.selected_X && C3.selected_X && !C1.selected_O && !C1.selected_X))
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
         else if ((C1.selected_X && C3.selected_X && !C2.selected_O && !C2.selected_X))
-            SelectItem(C2_gameobject, Item.O);
+            SelectItem(C2_gameobject, Item.Dog);
         else if ((C1.selected_X && C2.selected_X && !C3.selected_O && !C3.selected_X))
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         //defense columns
         else if ((B1.selected_X && C1.selected_X && !A1.selected_O && !A1.selected_X))
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if ((A1.selected_X && C1.selected_X && !B1.selected_O && !B1.selected_X))
-            SelectItem(B1_gameobject, Item.O);
+            SelectItem(B1_gameobject, Item.Dog);
         else if ((A1.selected_X && B1.selected_X && !C1.selected_O && !C1.selected_X))
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
 
         else if ((B2.selected_X && C2.selected_X && !A2.selected_O && !A2.selected_X))
-            SelectItem(A2_gameobject, Item.O);
+            SelectItem(A2_gameobject, Item.Dog);
         else if ((A2.selected_X && C2.selected_X && !B2.selected_O && !B2.selected_X))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
         else if ((A2.selected_X && B2.selected_X && !C2.selected_O && !C2.selected_X))
-            SelectItem(C2_gameobject, Item.O);
+            SelectItem(C2_gameobject, Item.Dog);
 
         else if ((B3.selected_X && C3.selected_X && !A3.selected_O && !A3.selected_X))
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
         else if ((A3.selected_X && C3.selected_X && !B3.selected_O && !B3.selected_X))
-            SelectItem(B3_gameobject, Item.O);
+            SelectItem(B3_gameobject, Item.Dog);
         else if ((A3.selected_X && B3.selected_X && !C3.selected_O && !C3.selected_X))
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         //defense diagonal
         else if ((B2.selected_X && C3.selected_X && !A1.selected_O && !A1.selected_X))
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if ((A1.selected_X && C3.selected_X && !B2.selected_O && !B2.selected_X))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
         else if ((A1.selected_X && B2.selected_X && !C3.selected_O && !C3.selected_X))
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         else if ((B2.selected_X && C1.selected_X && !A3.selected_O && !A3.selected_X))
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
         else if ((A3.selected_X && C1.selected_X && !B2.selected_O && !B2.selected_X))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
         else if ((A3.selected_X && B2.selected_X && !C1.selected_O && !C1.selected_X))
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
 
         //first defense (middle)
         else if ((!B2.selected_X && !B2.selected_O))
-            SelectItem(B2_gameobject, Item.O);
+            SelectItem(B2_gameobject, Item.Dog);
 
         //if player started in the middle, select one of the borders
         else if ((!A1.selected_X && !A1.selected_O && B2.selected_X))
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if ((!A3.selected_X && !A3.selected_O && B2.selected_X))
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
         else if ((!C1.selected_X && !C1.selected_O && B2.selected_X))
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
         else if ((!C3.selected_X && !C3.selected_O && B2.selected_X))
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         //select any of no border (that can win) if the middle is of the CPU
         else if ((!A2.selected_X && !A2.selected_O && !C2.selected_X && B2.selected_O))
-            SelectItem(A2_gameobject, Item.O);
+            SelectItem(A2_gameobject, Item.Dog);
         else if ((!B1.selected_X && !B1.selected_O && !B3.selected_X && B2.selected_O))
-            SelectItem(B1_gameobject, Item.O);
+            SelectItem(B1_gameobject, Item.Dog);
         else if ((!B3.selected_X && !B3.selected_O && !B1.selected_X && B2.selected_O))
-            SelectItem(B3_gameobject, Item.O);
+            SelectItem(B3_gameobject, Item.Dog);
         else if ((!C2.selected_X && !C2.selected_O && !A2.selected_X && B2.selected_O))
-            SelectItem(C2_gameobject, Item.O);
+            SelectItem(C2_gameobject, Item.Dog);
 
         //select any border (that can win and between X) if the middle is of the CPU
         else if (!A1.selected_X && !A1.selected_O && !C3.selected_X && B2.selected_O && B1.selected_X && A2.selected_X)
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if (!A3.selected_X && !A3.selected_O && !C1.selected_X && B2.selected_O && A2.selected_X && B3.selected_X)
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
         else if (!C1.selected_X && !C1.selected_O && !A3.selected_X && B2.selected_O && B1.selected_X && C2.selected_X)
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
         else if (!C3.selected_X && !C3.selected_O && !A1.selected_X && B2.selected_O && C2.selected_X && B3.selected_X)
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         //select any border (that can win and not near O) if the middle is of the CPU
         else if (!A1.selected_X && !A1.selected_O && !C3.selected_X && B2.selected_O && !B1.selected_O && !A2.selected_O)
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if (!A3.selected_X && !A3.selected_O && !C1.selected_X && B2.selected_O && !A2.selected_O && !B3.selected_O)
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
         else if (!C1.selected_X && !C1.selected_O && !A3.selected_X && B2.selected_O && !B1.selected_O && !C2.selected_O)
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
         else if (!C3.selected_X && !C3.selected_O && !A1.selected_X && B2.selected_O && !C2.selected_O && !B3.selected_O)
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         //play anywhere (deu velha)
         else if ((!A2.selected_X && !A2.selected_O))
-            SelectItem(A2_gameobject, Item.O);
+            SelectItem(A2_gameobject, Item.Dog);
         else if ((!B1.selected_X && !B1.selected_O))
-            SelectItem(B1_gameobject, Item.O);
+            SelectItem(B1_gameobject, Item.Dog);
         else if ((!B3.selected_X && !B3.selected_O))
-            SelectItem(B3_gameobject, Item.O);
+            SelectItem(B3_gameobject, Item.Dog);
         else if ((!C2.selected_X && !C2.selected_O))
-            SelectItem(C2_gameobject, Item.O);
+            SelectItem(C2_gameobject, Item.Dog);
         else if ((!A1.selected_X && !A1.selected_O))
-            SelectItem(A1_gameobject, Item.O);
+            SelectItem(A1_gameobject, Item.Dog);
         else if ((!A3.selected_X && !A3.selected_O))
-            SelectItem(A3_gameobject, Item.O);
+            SelectItem(A3_gameobject, Item.Dog);
         else if ((!C1.selected_X && !C1.selected_O))
-            SelectItem(C1_gameobject, Item.O);
+            SelectItem(C1_gameobject, Item.Dog);
         else if ((!C3.selected_X && !C3.selected_O))
-            SelectItem(C3_gameobject, Item.O);
+            SelectItem(C3_gameobject, Item.Dog);
 
         firstPlayer = true;
     }
