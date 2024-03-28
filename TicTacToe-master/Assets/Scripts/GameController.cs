@@ -3,62 +3,80 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using YG;
+using System.Threading.Tasks;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     public GameObject gameOverPanel;
 
     public TextMeshProUGUI currentScoreText;
-    public TextMeshProUGUI bestScoreText;
-    public TextMeshProUGUI startText;
+    public TextMeshProUGUI bestScoreText; // Текст для отображения лучшего счета
+    public Text startText;
 
-    int currentScore;
+    public int currentScore;
+    private int bestScore; // Переменная для хранения лучшего счета
 
-    void Start()
+    void Start( )
     {
         currentScore = 0;
-        bestScoreText.text = PlayerPrefs.GetInt("BestScore", 0).ToString();
-        SetScore();
+        bestScore = PlayerPrefs.GetInt ( "BestScore" , 0 ); // Загрузка лучшего счета из PlayerPrefs
+        bestScoreText.text = bestScore.ToString (); // Установка текста лучшего счета при старте
+        SetScore ();
     }
 
-    void Update()
+    void Update( )
     {
-        if (Input.GetMouseButton(0))
+        if ( Input.GetMouseButton ( 0 ) )
         {
-            startText.gameObject.SetActive(false);
+            startText.gameObject.SetActive ( false );
         }
     }
 
-    public void CallGameOver()
+    public void CallGameOver( )
     {
-        StartCoroutine(GameOver());
+        StartCoroutine ( GameOver () );
     }
 
-    IEnumerator GameOver()
+    IEnumerator GameOver( )
     {
-        yield return new WaitForSeconds(0.5f);
-        gameOverPanel.SetActive(true);
+        yield return new WaitForSeconds ( 0.5f );
+        gameOverPanel.SetActive ( true );
         yield break;
     }
 
-    public void Restart()
+    public void Restart( )
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene ( SceneManager.GetActiveScene ().buildIndex );
     }
 
-    public void AddScore()
+    public void AddScore( )
     {
         currentScore++;
-        if(currentScore > PlayerPrefs.GetInt("BestScore", 0))
+        if ( currentScore > bestScore )
         {
-            PlayerPrefs.SetInt("BestScore", currentScore);
-            bestScoreText.text = currentScore.ToString();
+            bestScore = currentScore; // Обновление лучшего счета
+            PlayerPrefs.SetInt ( "BestScore" , bestScore ); // Сохранение лучшего счета в PlayerPrefs
+            bestScoreText.text = bestScore.ToString (); // Обновление текста лучшего счета
         }
-        SetScore();
+        SetScore ();
     }
 
-    void SetScore()
+    void SetScore( )
     {
-        currentScoreText.text = currentScore.ToString();
+        currentScoreText.text = currentScore.ToString ();
+    }
+    private void OnEnable( )
+    {
+        GetData ();
+    }
+    private void OnDisable( )
+    {
+        GetData ();
+    }
+    public async void GetData( )
+    {
+        YandexGame.NewLeaderboardScores ( "LeaderBoard",bestScore );
     }
 }
