@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
+
     public void PlayGame()
     {
         PlatformController.GameModeSelected = PlatformController.GameModes.Local;
