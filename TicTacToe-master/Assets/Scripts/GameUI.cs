@@ -30,10 +30,10 @@ public class GameUI : MonoBehaviour
         soundButton.onClick.AddListener(() => SoundManager.instance.SoundOnOff());
     }
 
-    void Start()
+    void Start( )
     {
-        currentLevelText.text = FindObjectOfType<LevelSpawner>()._level.ToString();
-        nextLevelText.text = FindObjectOfType<LevelSpawner>()._level + 1 + "";
+        currentLevelText.text = "Уровень " + FindObjectOfType<LevelSpawner> ()._level.ToString ();
+        nextLevelText.text = ( FindObjectOfType<LevelSpawner> ()._level + 1 ).ToString ();
     }
 
     void Update()
@@ -72,7 +72,7 @@ public class GameUI : MonoBehaviour
             finishUI.SetActive(true);
             gameOverUI.SetActive(false);
 
-            finishLevelText.text = "Level " + FindObjectOfType<LevelSpawner>()._level;
+            finishLevelText.text = "Уровень " + FindObjectOfType<LevelSpawner>()._level;
         }
 
         if (_player.playerState == Player.PlayerState.Dead)

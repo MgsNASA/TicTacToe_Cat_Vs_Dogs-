@@ -28,10 +28,10 @@ MonoBehaviour:
   durationOfAdSimulation: 0.5
   LocalizationEnable: 1
   callingLanguageCheck: 1
-  translateMethod: 1
+  translateMethod: 0
   domainAutoLocalization: com
   CSVFileTranslate:
-    format: 1
+    format: 0
     name: TranslateCSV
   languages:
     ru: 1

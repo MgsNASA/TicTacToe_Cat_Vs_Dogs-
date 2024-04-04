@@ -62,13 +62,13 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Obstacle")
         {
-            SoundManager.instance.PlaySingle(deathSound);
+            SoundManager.instance.PlaySoundEffect ( deathSound,100);
             // SoundManager.instance.musicSource.Stop(); // Stops the music
             Death();
         }
         else if (other.gameObject.tag == "Collectible")
         {
-            SoundManager.instance.PlaySingle(itemSound);
+            SoundManager.instance.PlaySoundEffect ( itemSound,100);
             GetItem(other);
         }
     }
