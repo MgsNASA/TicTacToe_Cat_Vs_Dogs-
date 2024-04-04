@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource efxSource;
-    public AudioSource musicSource;
-    public static SoundManager instance = null;
+    public static SoundManager instance;
+    private AudioSource _audioSource;
+    public bool _soundPlay = true;
+
     void Awake()
     {
-        if(instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
+        if (instance != null)
         {
             Destroy(gameObject);
         }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
-        DontDestroyOnLoad(gameObject);
+        _audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlaySingle(AudioClip clip)
+    public void PlaySoundEffect(AudioClip clip, float volume)
     {
-        efxSource.clip = clip;
-        efxSource.Play();
+        if(_soundPlay)
+            _audioSource.PlayOneShot(clip, volume);
+    }
+
+    public void SoundOnOff()
+    {
+        _soundPlay = !_soundPlay;
     }
 }
