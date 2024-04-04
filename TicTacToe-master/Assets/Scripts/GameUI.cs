@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using System;
+using YG;
 
 public class GameUI : MonoBehaviour
 {
@@ -11,12 +13,10 @@ public class GameUI : MonoBehaviour
     public Image currentLevelImg;
     public Image nextLevelImg;
     public GameObject firstUI, inGameUI, finishUI, gameOverUI;
-    public GameObject allButtons;
     private bool _buttons;
     private Material _playerMaterial;
     public Text currentLevelText, nextLevelText, finishLevelText, gameOverScoreText, gameOverBestText;
     private Player _player;
-    public Button soundButton;
     public Sprite soundOnImg, soundOffImg;
 
     void Awake()
@@ -27,7 +27,7 @@ public class GameUI : MonoBehaviour
         levelSliderFill.color = _playerMaterial.color + Color.gray;
         nextLevelImg.color = _playerMaterial.color;
         currentLevelImg.color = _playerMaterial.color;
-        soundButton.onClick.AddListener(() => SoundManager.instance.SoundOnOff());
+       
     }
 
     void Start( )
@@ -45,15 +45,7 @@ public class GameUI : MonoBehaviour
     {
         if (_player.playerState == Player.PlayerState.Prepare)
         {
-            if (SoundManager.instance._soundPlay && soundButton.GetComponent<Image>().sprite != soundOnImg)
-            {
-                soundButton.GetComponent<Image>().sprite = soundOnImg;
-            }
-
-            else if (!SoundManager.instance._soundPlay && soundButton.GetComponent<Image>().sprite != soundOffImg)
-            {
-                soundButton.GetComponent<Image>().sprite = soundOffImg;
-            }
+       
         }
 
         if (Input.GetMouseButtonDown(0) && !IgnoreUI() && _player.playerState == Player.PlayerState.Prepare)
@@ -71,8 +63,8 @@ public class GameUI : MonoBehaviour
             inGameUI.SetActive(false);
             finishUI.SetActive(true);
             gameOverUI.SetActive(false);
-
-            finishLevelText.text = "Уровень " + FindObjectOfType<LevelSpawner>()._level;
+            YandexMethod ();
+            finishLevelText.text = " " + FindObjectOfType<LevelSpawner>()._level;
         }
 
         if (_player.playerState == Player.PlayerState.Dead)
@@ -91,6 +83,11 @@ public class GameUI : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
         }
+    }
+
+    public void YandexMethod( )
+    {
+        YandexGame.FullscreenShow ();
     }
 
     private bool IgnoreUI()
@@ -119,6 +116,6 @@ public class GameUI : MonoBehaviour
     public void Settings()
     {
         _buttons = !_buttons;
-        allButtons.SetActive(_buttons);
+        
     }
 }
