@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa747916aa66674d96ea40ca8a480b2, type: 3}
   m_Name: InfoYG
   m_EditorClassIdentifier: 
-  scopes: 0
+  scopes: 1
   playerPhotoSize: 0
-  leaderboardEnable: 1
+  leaderboardEnable: 0
   saveCloud: 1
   flush: 0
   localSaveSync: 1
@@ -28,10 +28,10 @@ MonoBehaviour:
   durationOfAdSimulation: 0.5
   LocalizationEnable: 1
   callingLanguageCheck: 1
-  translateMethod: 0
+  translateMethod: 1
   domainAutoLocalization: com
   CSVFileTranslate:
-    format: 0
+    format: 1
     name: TranslateCSV
   languages:
     ru: 1
@@ -63,7 +63,7 @@ MonoBehaviour:
     hi: 0
   fonts:
     defaultFont:
-    - {fileID: 12800000, guid: 997a43b767814dd0a7642ec9b78cba41, type: 3}
+    - {fileID: 12800000, guid: 26bbc660af330314896aca5e15738cce, type: 3}
     ru: []
     en: []
     tr: []
@@ -92,9 +92,9 @@ MonoBehaviour:
     de: []
     hi: []
   fontsSizeCorrect:
-    ru: 
-    en: 
-    tr: 
+    ru: 0f000000
+    en: 0f000000
+    tr: 0f000000
     az: 
     be: 
     he: 

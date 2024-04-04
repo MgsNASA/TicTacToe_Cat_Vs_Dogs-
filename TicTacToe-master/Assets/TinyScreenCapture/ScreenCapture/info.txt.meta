@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 86482b5d8067d45b8a5ba34a8296650a
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 130517
+  packageName: Tiny Screen Capture
+  packageVersion: 1.0
+  assetPath: Assets/TinyScreenCapture/ScreenCapture/info.txt
+  uploadId: 274194
