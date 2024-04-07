@@ -63,7 +63,6 @@ public class GameUI : MonoBehaviour
             inGameUI.SetActive(false);
             finishUI.SetActive(true);
             gameOverUI.SetActive(false);
-            YandexMethod ();
             finishLevelText.text = " " + FindObjectOfType<LevelSpawner>()._level;
         }
 
